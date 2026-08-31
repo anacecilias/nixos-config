@@ -1,6 +1,5 @@
 {
-  # Aceleração 3D + suporte 32-bit — essencial para Steam/Wine/Proton,
-  # independente do fabricante da GPU (Intel/AMD/NVIDIA).
+  # 3d acceleration and 32 bit graphics support, likely required for steam, wine and proton
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

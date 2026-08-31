@@ -1,16 +1,18 @@
 { config, pkgs, inputs, ... }:
+
 {
   imports = [
-    # Gerado pelo instalador do NixOS nesta máquina.
-    # Substitua pelo arquivo real de /etc/nixos/hardware-configuration.nix
+    # replace with your systems /etc/nixos/hardware-configuration.nix
     ./hardware-configuration.nix
   ];
 
-  # ⚠️ Ajuste para o nome que quiser dar a esta máquina
+  # set your system hostname
   networking.hostName = "nixos-laptop";
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
+  # dont change this value after initial installation
+  # controls state compatibility across nixos updates
   system.stateVersion = "24.05";
 }

@@ -1,7 +1,7 @@
-# Configuração do sops: define quais chaves age podem descriptografar
-# quais arquivos. Veja secrets/README.md para o passo a passo completo.
+# SOPS configuration: maps age public keys to encrypted secret files
+# refer to secrets/README.md for detailed setup instructions
 keys:
-  - &user age1SUBSTITUA_PELA_SUA_CHAVE_PUBLICA_AGE
+  - &user age1REPLACE_WITH_YOUR_AGE_PUBLIC_KEY
 
 creation_rules:
   - path_regex: secrets/.*\.yaml$

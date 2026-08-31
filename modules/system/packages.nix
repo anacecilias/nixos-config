@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    # Ferramentas de terminal
+    # terminal tools
     vim
     git
     wget
@@ -11,7 +11,7 @@
     p7zip
     fastfetch
 
-    # Aplicativos do dia a dia
+    # daily apps
     firefox
     vscode
     discord
@@ -19,7 +19,7 @@
     vlc
     gimp
 
-    # Úteis para o KDE Plasma
+    # KDE plasma utils
     kdePackages.kate
     kdePackages.ark
     kdePackages.filelight

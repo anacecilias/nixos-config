@@ -1,10 +1,9 @@
 {
-  description = "Template de configuração NixOS multi-host (desktop + laptop), KDE Plasma + gaming";
+  description = "multi host nixos configuration template (desktop + laptop) with KDE plasma and gaming support";
 
   inputs = {
-    # nixos-unstable dá acesso a pacotes/kernel mais recentes.
-    # Se preferir mais estabilidade, troque para "nixos-24.05" (mesma
-    # branch do stateVersion usado abaixo).
+    # nixos unstable for latest packages and kernel features
+    # change to a stable release (e.g., "nixos-24.11") for higher stability
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -23,15 +22,10 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
 
-      # ─────────────────────────────────────────────────────────────
-      # ÚNICO lugar que você precisa editar para "batizar" este
-      # template com o seu usuário. Tudo abaixo (users, home-manager,
-      # aliases) referencia esta variável.
+      # set primary user username used across all configurations
       username = "changeme";
-      # ─────────────────────────────────────────────────────────────
 
-      # Módulos compartilhados por TODOS os hosts. Cada host adiciona por
-      # cima seus módulos específicos (ex.: nvidia.nix vs laptop-power.nix).
+      # shared modules included across all host configurations
       commonModules = [
         ./modules/system/boot.nix
         ./modules/system/locale.nix
@@ -61,8 +55,7 @@
     in
     {
       nixosConfigurations = {
-        # Desktop: GPU NVIDIA dedicada, sem gestão de energia de notebook.
-        # Renomeie a chave "desktop" se quiser um nome de host diferente.
+        # Desktop configuration (NVIDIA GPU setup, no laptop power management)
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs username; };
@@ -72,8 +65,7 @@
           ];
         };
 
-        # Laptop: sem NVIDIA (ajuste se o seu tiver GPU dedicada/Optimus),
-        # com TLP/thermald para bateria.
+        # laptop configuration (power management via TLP/thermald)
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs username; };
@@ -84,7 +76,7 @@
         };
       };
 
-      # `nix develop` nesta pasta dá acesso a sops/age para editar segredos.
+      # development shell providing secrets management tools (`nix develop`)
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [ git sops age ];
       };

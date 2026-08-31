@@ -1,18 +1,19 @@
 { pkgs, ... }:
+
 {
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Abre portas para Steam Remote Play
+    remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = false;
-    gamescopeSession.enable = true; # Permite rodar jogos via Gamescope
+    gamescopeSession.enable = true;
   };
 
-  # Otimiza automaticamente CPU/GPU (governor, etc) enquanto um jogo roda
+  # optimize cpu/gpu performance while games are running
   programs.gamemode.enable = true;
 
   environment.systemPackages = with pkgs; [
-    lutris # Gerenciador de jogos (GOG, Epic, Battle.net via Wine)
-    mangohud # Overlay de FPS/temperatura/uso de CPU-GPU
-    protonup-qt # Instala versões customizadas do Proton (Proton-GE, etc)
+    lutris
+    mangohud
+    protonup-qt
   ];
 }

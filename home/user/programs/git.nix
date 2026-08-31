@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
 
-    # ⚠️ Ajuste para seus dados reais
+    # replace with your own details
     userName = "Change Me";
     userEmail = "you@example.com";
 
@@ -13,7 +13,6 @@
       push.autoSetupRemote = true;
     };
 
-    # Aliases úteis (equivalentes a `git config --global alias.xxx`)
     aliases = {
       st = "status -sb";
       co = "checkout";

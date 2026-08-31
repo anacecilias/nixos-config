@@ -13,7 +13,7 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  # Teclado ABNT2 no console (TTY) e no ambiente gráfico
+  # brazilian ABNT2 keyboard layout
   console.keyMap = "br-abnt2";
   services.xserver.xkb = {
     layout = "br";

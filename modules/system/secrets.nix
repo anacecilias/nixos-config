@@ -1,18 +1,17 @@
 { config, ... }:
+
 {
-  # Onde o sops-nix procura o arquivo de segredos criptografado por padrão.
-  # Veja secrets/README.md para instruções de como criá-lo.
+  # default encrypted secrets file path
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
 
-  # Chave privada age usada para descriptografar em tempo de rebuild.
-  # NUNCA vai para o Git — vive só na máquina, fora do /nix/store.
+  # path to the age private key used for decryption at rebuild time
   sops.age.keyFile = "/var/lib/sops-nix/key.txt";
 
-  # Descomente e declare aqui os segredos definidos em secrets/secrets.yaml.
-  # Cada um vira um arquivo legível apenas pelo dono em /run/secrets/<nome>.
+  # uncomment and declare secrets defined in secrets/secrets.yaml.
+  # secrets will be available at /run/secrets/<name>.
   #
-  # sops.secrets."wifi/senha" = {};
-  # sops.secrets."usuario/senha_hash" = {
-  #   neededForUsers = true; # necessário se for usado em users.users.<x>.hashedPasswordFile
+  # sops.secrets."wifi/password" = {};
+  # sops.secrets."user/password_hash" = {
+  #   neededForUsers = true; # required if used with users.users.<name>.hashedPasswordFile
   # };
 }

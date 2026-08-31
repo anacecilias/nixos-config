@@ -1,15 +1,14 @@
 {
-  # Habilita o comando `nix` novo e o suporte a flakes no sistema
-  # (necessário para usar `nixos-rebuild switch --flake`)
+  # enable new nix command line tool and flakes support
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Limpa gerações antigas do sistema semanalmente
+  # automatic garbage collection of old generations
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
 
-  # Otimiza o armazenamento do Nix automaticamente (deduplica /nix/store)
+  # automatically optimize and deduplicate the nix store
   nix.settings.auto-optimise-store = true;
 }

@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   programs.zsh = {
     enable = true;
@@ -11,12 +12,11 @@
     shellAliases = {
       ll = "ls -la";
       gc = "sudo nix-collect-garbage -d";
-      # Ajuste o caminho abaixo para onde você clonar este repositório
+      # update path to match your local repository clone directory
       update = "sudo nixos-rebuild switch --flake ~/nixos-config#$(hostname)";
     };
   };
 
-  # Prompt bonito e informativo (mostra branch de git, status, etc)
   programs.starship = {
     enable = true;
     enableZshIntegration = true;

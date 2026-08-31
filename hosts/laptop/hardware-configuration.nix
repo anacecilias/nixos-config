@@ -1,15 +1,11 @@
-# ATENÇÃO: este é apenas um placeholder.
-#
-# Substitua este arquivo pelo hardware-configuration.nix real deste
-# laptop, gerado por `nixos-generate-config` em /etc/nixos/.
-#
+# replace this file with your system's configuration from /etc/nixos/hardware-configuration.nix:
 #   cp /etc/nixos/hardware-configuration.nix ./hosts/laptop/hardware-configuration.nix
 
 { config, lib, pkgs, modulesPath, ... }:
+
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  # ⚠️ Conteúdo de exemplo — substitua pelo arquivo real antes de usar!
   boot.initrd.availableKernelModules = [ ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];

@@ -1,4 +1,5 @@
 { pkgs, username, ... }:
+
 {
   imports = [
     ./programs/git.nix
@@ -9,13 +10,12 @@
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
-  # Deve acompanhar o stateVersion do sistema (não mude depois de definido)
+  # dont change this value after initial installation
+  # controls state compatibility across home manager updates
   home.stateVersion = "24.05";
 
-  # Permite que o home-manager gerencie a si mesmo
   programs.home-manager.enable = true;
 
-  # Pacotes específicos do usuário (em vez de systemPackages)
   home.packages = with pkgs; [
     btop
   ];
