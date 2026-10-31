@@ -1,0 +1,23 @@
+name: Check flake
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: nix flake check
+        run: nix flake check --no-build
+
+      - name: Build desktop config (dry run)
+        run: nix build .#nixosConfigurations.desktop.config.system.build.toplevel --dry-run
+
+      - name: Build laptop config (dry run)
+        run: nix build .#nixosConfigurations.laptop.config.system.build.toplevel --dry-run
