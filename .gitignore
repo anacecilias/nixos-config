@@ -1,0 +1,7 @@
+result
+result-*
+.direnv/
+.envrc
+
+# Chave privada do sops-nix: NUNCA deve ir para o Git
+**/keys.txt
