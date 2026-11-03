@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  # gtk2 foi marcado como obsoleto no nixpkgs; algum pacote ainda depende dele.
+  # Remover quando o pacote responsável for atualizado.
+  nixpkgs.config.problems.handlers."gtk+".broken = "warn";
+
   environment.systemPackages = with pkgs; [
     # terminal tools
     vim
