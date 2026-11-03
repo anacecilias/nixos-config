@@ -2,21 +2,22 @@
   programs.git = {
     enable = true;
 
-    # replace with your own details
-    userName = "Change Me";
-    userEmail = "you@example.com";
+    settings = {
+      # ⚠️ Ajuste para seus dados reais
+      user.name = "Change Me";
+      user.email = "you@example.com";
 
-    extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
       core.editor = "vim";
       push.autoSetupRemote = true;
-    };
 
-    aliases = {
-      st = "status -sb";
-      co = "checkout";
-      lg = "log --oneline --graph --decorate --all";
+      # Aliases úteis (equivalentes a `git config --global alias.xxx`)
+      alias = {
+        st = "status -sb";
+        co = "checkout";
+        lg = "log --oneline --graph --decorate --all";
+      };
     };
   };
 }
