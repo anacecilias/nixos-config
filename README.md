@@ -69,11 +69,14 @@ Individual host definitions extend this base with hardware-specific configs
 
 2. Copy the system generated `hardware-configuration.nix` to the target host folder:
 
-   ```bash
+```bash
   cp /etc/nixos/hardware-configuration.nix ./hosts/desktop/hardware-configuration.nix
+```
+
   # or for the laptop:
+```bash
   cp /etc/nixos/hardware-configuration.nix ./hosts/laptop/hardware-configuration.nix
-   ```
+```
 
 3. (Optional) configure encrypted secrets by following
    [`secrets/README.md`](./secrets/README.md).
