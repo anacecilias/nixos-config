@@ -3,7 +3,6 @@
 
   inputs = {
     # nixos unstable for latest packages and kernel features
-    # change to a stable release (e.g., "nixos-24.11") for higher stability
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -55,13 +54,14 @@
     in
     {
       nixosConfigurations = {
-        # Desktop configuration (NVIDIA GPU setup, no laptop power management)
+        # desktop configuration (nvidia gpu setup + monitoring container)
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs username; };
           modules = commonModules ++ [
             ./hosts/desktop/configuration.nix
             ./modules/hardware/nvidia.nix
+            ./modules/monitoring-container.nix #
           ];
         };
 
