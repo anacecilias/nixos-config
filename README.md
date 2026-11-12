@@ -120,6 +120,32 @@ Individual host definitions extend this base with hardware-specific configs
 The default `update` Zsh alias simplifies re-building your system 
 Adjust the repository path in `home/user/programs/shell.nix` if cloned outside of `~/nixos-config`
 
+## Monitoring stack (Containerized)
+
+The desktop host includes an isolated, declarative NixOS container (monitoring) powered by systemd-nspawn (modules/monitoring-container.nix):
+
+- runs on an isolated private virtual network (ve-monitoring) with static IP addressing (Host: 192.168.100.1 / Container: 192.168.100.2)
+- the host runs prometheus-node-exporter on port 9100, restricted exclusively to the container's virtual interface via firewall rules
+- Prometheus TSDB and Grafana state are persisted outside the container's ephemeral filesystem via host bind mounts under /var/lib/nixos-containers/monitoring/
+- Prometheus datasources and custom dashboards (modules/dashboards/metrics-overview.json) are automatically provisioned on boot
+
+## Accessing and managing monitoring
+
+- Grafana UI: http://192.168.100.2:3000 (default credentials: admin / admin on first login)
+- Prometheus UI: http://192.168.100.2:9090
+
+Check container status:
+
+```bash
+sudo nixos-container status monitoring
+```
+
+Open a root shell inside the container:
+
+```bash
+sudo nixos-container root-login monitoring
+```
+
 ## Adding a new host
 
 1. Create a new directory under `hosts/<hostname>/` containing `configuration.nix` and `hardware-configuration.nix`
@@ -158,6 +184,7 @@ The `.github/workflows/check.yml` workflow runs `nix flake check` and dry-build 
 - add [nixos-hardware](https://github.com/NixOS/nixos-hardware) as a flake input to handle model-specific laptop quirks
 - swap `kitty` for an alternative terminal or replace `zsh` with `fish` in `home/user/programs/`
 - support multiple user accounts by parameterizing `modules/users/user.nix`
+- manage Grafana admin credentials declaratively using sops-nix secrets `(admin_password = "$__file{...}")`
 
 ## License
 
