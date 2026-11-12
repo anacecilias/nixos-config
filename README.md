@@ -71,10 +71,7 @@ Individual host definitions extend this base with hardware-specific configs
 
 ```bash
   cp /etc/nixos/hardware-configuration.nix ./hosts/desktop/hardware-configuration.nix
-```
-
-  # or for the laptop:
-```bash
+# or for the laptop:
   cp /etc/nixos/hardware-configuration.nix ./hosts/laptop/hardware-configuration.nix
 ```
 
