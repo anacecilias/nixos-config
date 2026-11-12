@@ -46,7 +46,7 @@
             static_configs = [
               { targets = [ "192.168.100.1:9100" ]; }
             ];
-          },
+          }
           {
             job_name = "monitoring-container";
             static_configs = [
